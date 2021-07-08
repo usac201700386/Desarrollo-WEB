@@ -1,0 +1,24 @@
+{
+    "empleados":[
+        {
+            "id":1,
+            "nombre":"Jose Campos",
+            "Puesto":"Programador"
+        },
+        {
+            "id":2,
+            "nombre":"David Campos",
+            "Puesto":"Publicidad"
+        },
+        {
+            "id":3,
+            "nombre":"Marenka Campos",
+            "Puesto":"Legal"
+        },
+        {
+            "id":4,
+            "nombre":"Williams Campos",
+            "Puesto":"Ventas"
+        }
+    ]
+}
