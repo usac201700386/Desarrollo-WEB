@@ -5,17 +5,27 @@ const notify= require('gulp-notify');
 const webp= require('gulp-webp');
 const concat=require('gulp-concat')
 
+//Utilidades CSS
 
+const autoprefixer =require('autoprefixer');
+const postcss=require('gulp-postcss');
+const cssnano=require('cssnano');
+const soourcemaps=require('gulp-sourcemaps')
 
+//Utiliades JS
+const terser=require('gulp-terser-js');
+const rename=require('gulp-rename');
 //Funcion que Compila SASS
 const paths={
     js:'src/js/**/*.js'
 }
 function css(){
     return src('./src/scss/app.scss')
-        .pipe(sass(
-            //{outputStyle: 'compressed'}
-        ))
+    .pipe(soourcemaps.init())// realiza un mapeo de la fuente de archivo de SASS
+        .pipe(sass({//outputStyle:'expanded'
+    }))
+        .pipe(postcss( [autoprefixer(),cssnano()]))
+        .pipe(soourcemaps.write('.'))// Escribe la direccion que dio el origen del nuevo archivo
         .pipe(dest('./build/css'))
 }
 
@@ -26,11 +36,13 @@ function watchArchivos(){
 }
 function javascript(){
     return src(paths.js)
+        .pipe(soourcemaps.init())
         .pipe(concat('bundle.js'))
+        .pipe(terser())
+        .pipe(soourcemaps.write('.'))
+        .pipe(rename({suffix:'.min'}))
         .pipe(dest('./build/js'))
     }
-
-
 
 
 function imagenes(){
