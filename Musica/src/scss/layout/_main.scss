@@ -1,0 +1,32 @@
+
+.contenido-principal{
+    padding: $separacion;
+
+    @include tablet{
+        @include grid(2,$separacion);
+        
+        
+    }
+
+
+}
+
+.contenido__info{
+        
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    .imagen{
+        max-width: 90%;
+    }
+
+    span{
+        color: $rosa;
+        font-weight: $bold;
+    }
+    .texto{
+        line-height: 1.3;
+        text-align: justify;
+    }
+}
